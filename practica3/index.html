@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="DigitalCore — Soluciones digitales minimalistas y profesionales. Foco en claridad, rendimiento y consistencia." />
+  <title>DigitalCore</title>
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- BOOTSRAP-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* MI PALETA DE COLORES */
+      --brand: #0f172a;   
+      --accent:#2563eb;   
+      --ink:  #111827;    
+      --muted:#6b7280;    
+      --bg:   #f9fafb;   
+      --card: #ffffff;    
+      --border: rgba(17,24,39,.08);
+      --radius: 16px;
+      --focus: #93c5fd;   
+    }
+
+    .navbar{background:var(--card)!important;border-bottom:1px solid var(--border);--bs-navbar-padding-y:.65rem}
+    .navbar-brand img{height:36px;width:auto}
+    .nav-link{color:var(--ink);opacity:.72;font-weight:600}
+    .nav-link:hover,.nav-link:focus{opacity:1}
+    .nav-link.active{color:var(--accent)!important}
+
+    .btn-pill{border-radius:999px}
+    .btn-accent{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+    .btn-accent:hover{filter:brightness(.96);color:#fff}
+    .btn-outline-accent{--bs-btn-color:var(--accent);--bs-btn-border-color:var(--accent);--bs-btn-hover-bg:var(--accent);--bs-btn-hover-border-color:var(--accent);--bs-btn-hover-color:#fff}
+
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-root-margin="0px 0px -40%" tabindex="0">
+
+  <!-- NAV -->
+  <nav id="mainNav" class="navbar navbar-expand-lg sticky-top" aria-label="Menú principal">
+    <div class="container-xl">
+      <a class="navbar-brand" href="#inicio" aria-label="DigitalCore - Inicio">
+        <img src="img/logo.png" alt="Logo de DigitalCore" loading="lazy" decoding="async">
+        <img src="" alt="">DigitalCore
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto me-lg-3 align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
+        <form class="d-flex mt-3 mt-lg-0" role="search" aria-label="Buscar en el sitio">
+          <input class="form-control me-2 focus-ring" type="search" placeholder="Buscar…" aria-label="Buscar">
+          <button class="btn btn-outline-accent btn-pill" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <body>
+
+  <section id="inicio" class="py-5">
+    <div class="container-xl d-flex flex-column flex-lg-row align-items-center gap-4">
+      <div class="text-center text-lg-start">
+        <h1 class="display-4 mb-3">Soluciones digitales minimalistas y profesionales</h1>
+        <p class="lead mb-4">Creamos sitios web y aplicaciones con un enfoque en claridad, rendimiento y consistencia.</p>    
+        <a href="#contacto" class="btn btn-accent btn-lg btn-pill me-2 mb-2">Contáctanos</a>
+        <a href="#servicios" class="btn btn-outline-accent btn-lg btn-pill mb-2">Nuestros servicios</a>
+      </div>
+      <div><img src="img/digital.webp" class="img-fluid" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+  </body>
+
+  <!-- FOOTER -->
+  <footer class="py-4">
+    <div class="container-xl d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <span class="small"><span id="y"></span> Danna Ilse Rodriguez Padilla</span>
+    </div>
+  </footer>
+</body>
+</html>
