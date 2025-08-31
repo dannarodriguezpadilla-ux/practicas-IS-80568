@@ -1,360 +1,701 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- Meta -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>La Pizza Nostra | Pizzería Moderna</title>
-  <meta name="description" content="Pizzería moderna con horno de leña. Menú artesanal, ingredientes frescos y delivery rápido.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap 5.3 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
+  <title>Oro Rosso Pizzería — Elegante, Minimalista, Sofisticada</title>
+  <meta name="description" content="Oro Rosso Pizzería — pizza artesanal desde 1989. Elegante, minimalista, sofisticada. Historia, menú, promociones semanales, galería, ubicación, reseñas y reservaciones.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Oro Rosso Pizzería">
+  <meta property="og:description" content="Pizza artesanal desde 1989.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1541774972-5e39b3bcd1f7?q=80&w=1200&auto=format&fit=crop">
+  <meta property="og:url" content="https://ororosso.example">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Oro Rosso Pizzería">
+  <meta name="twitter:description" content="Pizza artesanal desde 1989.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1541774972-5e39b3bcd1f7?q=80&w=1200&auto=format&fit=crop">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <style>
     :root{
-      --brand-red:#d83131;
-      --brand-orange:#ff9e2c;
-      --brand-gold:#f7c46c;
-      --brand-dark:#1b1b1b;
-      --brand-muted:#5d5d5d;
+      /* PALETA CÁLIDA */
+      --bg:#fdf6f0;        /* beige cálido (fondo principal) */
+      --bg-alt:#fff0e6;    /* melocotón suave (opcional para futuras secciones) */
+      --text:#2C3E50;      /* gris oscuro legible */
+      --accent:#C0392B;    /* terracota / rojo acento */
+      --deep:#8e2b1c;      /* terracota oscuro (bordes/iconos/monograma/footer) */
+      --muted:#e5d7d0;     /* gris cálido para líneas/estados */
+      --star:#f4c150;      /* dorado (estrellas) */
     }
-    html{scroll-behavior:smooth}
-    body{font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"; color:#222}
-    .navbar{transition:all .25s ease}
-    .navbar.scrolled{background:rgba(27,27,27,.9)!important; backdrop-filter:saturate(140%) blur(8px)}
-    .navbar .nav-link{font-weight:600}
-    .btn-brand{background:var(--brand-red); color:#fff; border:none}
-    .btn-brand:hover{filter:brightness(.9); color:#fff}
-    .badge-brand{background:var(--brand-orange)}
-    .hero{min-height:90vh; background:url('https://images.unsplash.com/photo-1548365328-9f547fb0951c?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat; position:relative; display:grid; place-items:center}
-    .hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.65))}
-    .hero-content{position:relative; z-index:2; color:#fff; text-align:center}
-    .hero h1{font-weight:800; letter-spacing:.5px}
-    .hero .lead{max-width:720px; margin:0 auto}
-    .floating-cta{position:fixed; right:20px; bottom:20px; z-index:1030}
-    .card{transition:transform .2s ease, box-shadow .2s ease}
-    .card:hover{transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.12)}
-    section{scroll-margin-top:82px}
-    .section-title{font-weight:800}
-    .divider{height:4px; width:80px; background:linear-gradient(90deg,var(--brand-red),var(--brand-orange)); border-radius:6px}
-    .feature-icon{width:44px; height:44px; display:grid; place-items:center; border-radius:12px; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,.08); color:var(--brand-red)}
-    .bg-soft{background:linear-gradient(180deg,#fff, #fffbe9)}
-    footer{background:var(--brand-dark); color:#cfcfcf}
-    footer a{color:#cfcfcf}
-    .social a{width:40px; height:40px; display:inline-grid; place-items:center; border-radius:50%; background:#2a2a2a; margin-right:10px}
-    .rating i{color:var(--brand-gold)}
-    .map-embed{min-height:340px; border:0; width:100%; border-radius:16px}
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    h1,h2,h3,h4,.display-1,.display-2,.navbar-brand{
+      font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+      letter-spacing: .3px;
+    }
+    /* Skip link */
+    .skip-link{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip-link:focus{
+      position: fixed; left: 1rem; top: 1rem; width:auto; height:auto; padding:.5rem .75rem; background:#fff; border:1px solid var(--muted); z-index:1051; border-radius:999px;
+    }
+    /* Navbar */
+    .navbar{
+      backdrop-filter: blur(8px);
+      background: rgba(253,246,240,.9) !important; /* beige cálido translúcido */
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+    .navbar-brand{
+      font-weight:700;
+      letter-spacing:1px;
+      position: relative;
+    }
+    .navbar-brand .monogram{
+      display:inline-block; width:1.9rem; height:1.9rem; line-height:1.9rem; text-align:center;
+      border:1.5px solid var(--deep); border-radius:50%;
+      margin-right:.5rem; font-weight:700;
+      color:var(--deep);
+    }
+    .btn-accent{
+      --bs-btn-color:#fff;
+      --bs-btn-bg:var(--accent);
+      --bs-btn-border-color:var(--accent);
+      --bs-btn-hover-bg:#a83222;
+      --bs-btn-hover-border-color:#a83222;
+      --bs-btn-focus-shadow-rgb:192,57,43;
+    }
+
+    /* Section spacing & anchors */
+    section{ padding: 4.5rem 0; }
+    @media (min-width:992px){ section{ padding: 6rem 0; } }
+    section[id]{ scroll-margin-top: 90px; }
+
+    /* Hero */
+    .hero{
+      position:relative; min-height: 85vh;
+      background-image: url('https://images.unsplash.com/photo-1689793598923-473d09c4b5f7?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      background-size: cover; background-position: center;
+      color:#fff; display:flex; align-items:center;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));
+    }
+    .hero .content{ position:relative; z-index:1; }
+    @media (min-width: 768px){ .hero{ background-attachment: fixed; } }
+    .eyebrow{ text-transform: uppercase; letter-spacing: .25em; font-size:.85rem; opacity:.85; }
+    .divider{
+      height:1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,.12), transparent);
+      margin:2rem 0;
+    }
+
+    /* Menu */
+    .menu-card{
+      border:1px solid rgba(0,0,0,.06); border-radius:1rem; background:#fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,.04);
+    }
+    .price{ color:var(--deep); font-weight:600; }
+    .badge-veg{ background:#e7f6e9; color:#1e7a2a; }
+    .badge-hot{ background:#fdecec; color:#c22; }
+    .filter-pill { cursor:pointer; }
+
+    /* Carousel promos */
+    .promo-slide{
+      height: 56vw; max-height: 520px;
+      background-size: cover; background-position: center;
+      position: relative;
+    }
+    .promo-slide::after{
+      content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45));
+    }
+    .carousel-caption{
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+      background: rgba(0,0,0,.18);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+    }
+
+    /* Gallery */
+    .gallery img{
+      border-radius:.75rem; object-fit:cover; width:100%; height:100%;
+      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,.06);
+    }
+    .gallery a:focus img, .gallery a:hover img{
+      transform: scale(1.02);
+      box-shadow: 0 10px 28px rgba(0,0,0,.10);
+    }
+
+    /* Location/Contact cards */
+    .card-soft{
+      border:1px solid rgba(0,0,0,.06); border-radius:1rem; background:#fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,.04);
+    }
+    .map-embed{ width:100%; min-height: 320px; border:0; border-radius:1rem; }
+
+    /* Social */
+    .social-btn{
+      width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center;
+      border-radius:50%; border:1px solid var(--deep);
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .social-btn:hover{ background: var(--deep); color:#fff; transform: translateY(-2px); }
+
+    /* Reviews */
+    .star { color: var(--star); }
+    .review-card{ border:1px solid rgba(0,0,0,.06); border-radius:1rem; background:#fff; box-shadow: 0 6px 20px rgba(0,0,0,.04); }
+
+    /* Footer (ahora cálido) */
+    footer{
+      background: var(--deep);
+      color:#fff;
+      border-top:none;
+    }
+    footer a{ color:#fdf6f0 !important; }
+
+    /* Back to top */
+    .back-to-top{
+      position: fixed; right: 1rem; bottom: 1rem; display:none; z-index:1030;
+      border-radius: 999px; box-shadow: 0 10px 28px rgba(0,0,0,.15);
+    }
+    .back-to-top.show{ display:inline-flex; }
+
+    /* Focus ring */
+    :focus-visible{ outline: 3px solid rgba(44,62,80,.35); outline-offset: 3px; border-radius: .5rem; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; scroll-behavior: auto; }
+    }
   </style>
+
+  <!-- Schema.org JSON-LD (sin cambios de estructura) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Oro Rosso Pizzeria",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Roma 21",
+      "addressLocality": "Naples",
+      "addressCountry": "IT"
+    },
+    "telephone": "+39 081 123 4567",
+    "email": "ciao@ororosso.example",
+    "geo": { "@type": "GeoCoordinates", "latitude": 40.8518, "longitude": 14.2681 },
+    "url": "https://ororosso.example",
+    "sameAs": [
+      "https://instagram.com/ororosso.pizza",
+      "https://tiktok.com/@ororosso.pizza"
+    ],
+    "image": "https://images.unsplash.com/photo-1601924928376-03a9b5343d2b?q=80&w=1200&auto=format&fit=crop",
+    "servesCuisine": "Pizza",
+    "openingHours": "Mo-Su 12:00-22:30"
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
   <!-- Navbar -->
-  <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-lg sticky-top" aria-label="Principal">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="#inicio">
-        <span class="me-2 p-2 rounded-3" style="background:#fff"><i class="bi bi-pizza" style="color:var(--brand-red)"></i></span>
-        <strong>La Pizza Nostra</strong>
+      <a class="navbar-brand d-flex align-items-center" href="#home">
+        <span class="monogram" aria-hidden="true">O</span><span>Oro Rosso Pizzería</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Alternar navegación">
+        <span class="navbar-toggler-icon"><i class="bi bi-list fs-1"></i></span>
       </button>
-      <div class="collapse navbar-collapse" id="navContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="#menu">Menú</a></li>
-          <li class="nav-item"><a class="nav-link" href="#nosotros">Sobre Nosotros</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#home">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#history">Historia</a></li>
+          <li class="nav-item"><a class="nav-link" href="menu.html">Menú</a></li>
+          <li class="nav-item"><a class="nav-link" href="#promos">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reviews">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="#location">Ubicación</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="reservacion.html">Reservación</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-sm btn-accent rounded-pill px-3" href="#contact" role="button" aria-label="Reservar mesa">Reservar mesa</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header id="inicio" class="hero">
-    <div class="hero-content container">
-      <span class="badge badge-brand rounded-pill px-3 py-2 mb-3">Horno de leña · Delivery y Pick-up</span>
-      <h1 class="display-4 mb-3">Sabor auténtico italiano, hecho a la piedra</h1>
-      <p class="lead mb-4">Ingredientes frescos, masa de fermentación lenta y una carta pensada para compartir. ¡Prueba nuestras recetas insignia o arma tu pizza perfecta!</p>
-      <div class="d-flex gap-3 justify-content-center">
-        <a href="#menu" class="btn btn-brand btn-lg"><i class="bi bi-bag-check me-2"></i>Ordena ahora</a>
-        <a href="#contacto" class="btn btn-outline-light btn-lg"><i class="bi bi-telephone me-2"></i>Reservar mesa</a>
+  <header id="home" class="hero">
+    <div class="container content text-center">
+      <span class="eyebrow d-inline-block mb-3">Pizza artesanal • Desde 1989</span>
+      <h1 class="display-4 fw-bold mb-3">Elegancia en cada porción</h1>
+      <p class="mx-auto" style="max-width:720px">Masa estirada a mano, tomates San Marzano y dominio del horno de leña. Descubre una visión minimalista del arte napolitano clásico.</p>
+      <div class="mt-4">
+        <a href="menu.html" class="btn btn-light btn-lg rounded-pill px-4 me-2">Ver menú</a>
+        <a href="reservacion.html" class="btn btn-outline-light btn-lg rounded-pill px-4">Reservación</a>
       </div>
     </div>
   </header>
 
-  <!-- Features -->
-  <section class="py-5 bg-soft">
-    <div class="container">
-      <div class="row g-4 align-items-center">
-        <div class="col-md-4 d-flex gap-3 align-items-start">
-          <div class="feature-icon"><i class="bi bi-fire"></i></div>
-          <div>
-            <h5 class="mb-1">Horno de leña</h5>
-            <p class="mb-0 text-muted">Textura crujiente y centro esponjoso en cada porción.</p>
+  <main id="main">
+    <!-- History -->
+    <section id="history">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <div class="ratio ratio-4x3 rounded-4 overflow-hidden shadow-sm">
+              <img src="img/restaurante.jpg" alt="Interior del restaurante">
+            </div>
           </div>
-        </div>
-        <div class="col-md-4 d-flex gap-3 align-items-start">
-          <div class="feature-icon"><i class="bi bi-star"></i></div>
-          <div>
-            <h5 class="mb-1">Ingredientes premium</h5>
-            <p class="mb-0 text-muted">Mozzarella fior di latte, tomate San Marzano y aceite EVOO.</p>
-          </div>
-        </div>
-        <div class="col-md-4 d-flex gap-3 align-items-start">
-          <div class="feature-icon"><i class="bi bi-truck"></i></div>
-          <div>
-            <h5 class="mb-1">Entrega rápida</h5>
-            <p class="mb-0 text-muted">Caliente hasta tu puerta en tiempo récord.</p>
+          <div class="col-lg-6">
+            <span class="eyebrow text-muted">Nuestra historia</span>
+            <h2 class="fw-bold mt-2">Con raíces en Nápoles, refinado para hoy</h2>
+            <div class="divider"></div>
+            <p class="lead-tight">En 1989, la familia Romano abrió un pequeño local con un horno encendido y una convicción: la mesura revela el sabor. Honramos esa sencillez con una masa fermentada durante 48 horas y un fuego que nunca se apaga.</p>
+            <p class="lead-tight">Los tomates llegan de los suelos volcánicos del Agro Sarnese-Nocerino. El fior di latte se entrega a diario. La albahaca se desgarra a mano, nunca se pica. Sazonamos lo esencial: tiempo, calor y cuidado.</p>
+            <p class="lead-tight mb-0">Oro Rosso es un homenaje al equilibrio: crujiente y tierna, brillante y ahumada, elegante y familiar. Benvenuti.</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    
+    <!-- Promos Carousel -->
+    <section id="promos" aria-labelledby="promos-heading" class="bg-white">
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="eyebrow text-muted">Promociones de la semana</span>
+          <h2 id="promos-heading" class="fw-bold">Siete días, siete razones</h2>
+        </div>
+        <div id="promoCarousel" class="carousel slide" aria-label="Carrusel de promociones">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Diapositiva lunes"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="1" aria-label="Diapositiva martes"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="2" aria-label="Diapositiva miércoles"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="3" aria-label="Diapositiva jueves"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="4" aria-label="Diapositiva viernes"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="5" aria-label="Diapositiva sábado"></button>
+            <button type="button" data-bs-target="#promoCarousel" data-bs-slide-to="6" aria-label="Diapositiva domingo"></button>
+          </div>
+          <div class="carousel-inner rounded-4 overflow-hidden">
+            <!-- Monday -->
+            <div class="carousel-item active">
+              <div class="promo-slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1742996527125-5b63dbfabfdb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Lunes — Margherita clásica</h5>
+                <p class="mb-2">2× Margherita por 16 € • solo en salón</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+            <!-- Tuesday -->
+            <div class="carousel-item">
+              <div class="promo-slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1727173961758-b0624e2443fc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Martes — Entradas 2×1</h5>
+                <p class="mb-2">Bruschetta y arancini 2×1 • 17:00–19:00</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+            <!-- Wednesday -->
+            <div class="carousel-item">
+              <div class="promo-slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1671580679044-3558d358d112?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Miércoles — Vino &amp; pizza</h5>
+                <p class="mb-2">Cualquier pizza + copa de tinto 14 €</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+            <!-- Thursday -->
+            <div class="carousel-item">
+              <div class="promo-slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1665413642457-3384270cd93d?q=80&w=1625&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Jueves — Noche Diavola</h5>
+                <p class="mb-2">Diavola picante 10 € • aceite de chile gratis</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+            <!-- Friday -->
+            <div class="carousel-item">
+              <div class="promo-slide" style="background-image:url('https://images.unsplash.com/photo-1570946581013-83b974ed3fb7?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Viernes — Mesa del chef</h5>
+                <p class="mb-2">Edición limitada <em>Margherita Extra</em> • se recomienda reservar</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+            <!-- Saturday -->
+            <div class="carousel-item">
+              <div class="promo-slide" style="background-image:url('https://images.unsplash.com/photo-1533777419517-3e4017e2e15a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Sábado — Paquete familiar</h5>
+                <p class="mb-2">2 pizzas + 2 entradas + 4 bebidas 39 €</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+            <!-- Sunday -->
+            <div class="carousel-item">
+              <div class="promo-slide" style="background-image:url('https://plus.unsplash.com/premium_photo-1695028377519-70fb0c385db2?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+              <div class="carousel-caption text-lg-start text-center">
+                <h5 class="mb-1">Domingo — Dolce finale</h5>
+                <p class="mb-2">Tiramisú gratis con cualquier dos pizzas</p>
+                <a href="reservacion.html" class="btn btn-light btn-sm rounded-pill">Ordenar ahora</a>
+              </div>
+            </div>
+          </div>
 
-  <!-- Menú -->
-  <section id="menu" class="py-5">
-    <div class="container">
-      <h2 class="section-title">Nuestro Menú</h2>
-      <div class="divider mb-4"></div>
-      <p class="text-muted mb-4">Elige entre nuestras pizzas clásicas o especiales de temporada. *Precios en MXN.*</p>
+          <button class="carousel-control-prev" type="button" data-bs-target="#promoCarousel" data-bs-slide="prev" aria-label="Promoción anterior">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#promoCarousel" data-bs-slide="next" aria-label="Siguiente promoción">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </section>
 
-      <div class="row g-4">
-        <!-- Card 1 -->
-        <div class="col-sm-6 col-lg-4">
-          <div class="card h-100">
-            <img src="img/pizza1.jpg" class="card-img-top" alt="Pizza Margherita">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Margherita</h5>
-              <p class="card-text text-muted">Salsa de tomate San Marzano, mozzarella, albahaca fresca.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$160</span>
-                <a href="#contacto" class="btn btn-sm btn-brand"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
+    <!-- Reviews -->
+    <section id="reviews" aria-labelledby="reviews-heading">
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="eyebrow text-muted">Lo que dicen nuestros clientes</span>
+          <h2 id="reviews-heading" class="fw-bold">Reseñas de nuestros comensales</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card p-4 h-100">
+              <div class="d-flex align-items-center mb-2">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" class="rounded-circle me-3" alt="Retrato de la reseñista Anna" width="48" height="48" loading="lazy">
+                <div>
+                  <strong>Jeiza A.</strong><br>
+                  <span class="small text-muted">Guía local</span>
+                </div>
               </div>
-            </div>
+              <div class="mb-2" aria-label="5 de 5 estrellas">
+                <i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i>
+              </div>
+              <p class="mb-0">“La corteza es increíblemente ligera y el sazonado, medido: exactamente como debe ser una Margherita. El interior es tranquilo y hermoso.”</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card p-4 h-100">
+              <div class="d-flex align-items-center mb-2">
+                <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=200&auto=format&fit=crop" class="rounded-circle me-3" alt="Retrato del reseñista Marco" width="48" height="48" loading="lazy">
+                <div>
+                  <strong>Profe Marco</strong><br>
+                  <span class="small text-muted">Bloguero gastronómico</span>
+                </div>
+              </div>
+              <div class="mb-2" aria-label="5 de 5 estrellas">
+                <i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i>
+              </div>
+              <p class="mb-0">“La noche Diavola es imprescindible. Picor, humo, equilibrio. El servicio es atento sin complicaciones.”</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <article class="review-card p-4 h-100">
+              <div class="d-flex align-items-center mb-2">
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=200&auto=format&fit=crop" class="rounded-circle me-3" alt="Retrato de la reseñista Sophia" width="48" height="48" loading="lazy">
+                <div>
+                  <strong>Tadeo C.</strong><br>
+                  <span class="small text-muted">Cliente habitual</span>
+                </div>
+              </div>
+              <div class="mb-2" aria-label="4.5 de 5 estrellas">
+                <i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-fill star"></i><i class="bi bi-star-half star"></i>
+              </div>
+              <p class="mb-0">“Me encanta el ambiente sereno. La caprese es simple perfección y el personal recuerda nuestros nombres.”</p>
+            </article>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="col-sm-6 col-lg-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1601924582971-b0c5be3d4111?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Pizza Pepperoni">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Pepperoni</h5>
-              <p class="card-text text-muted">Mozzarella, pepperoni curado, toque de orégano.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$180</span>
-                <a href="#contacto" class="btn btn-sm btn-brand"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
-              </div>
-            </div>
+
+        <div class="text-center mt-4">
+          <a href="reservacion.html" class="btn btn-outline-dark rounded-pill">Reserva tu mesa</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" aria-labelledby="gallery-heading">
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="eyebrow text-muted">Dentro de Oro Rosso</span>
+          <h2 id="gallery-heading" class="fw-bold">Un interior cálido y tranquilo</h2>
+        </div>
+
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 gallery">
+          <!-- 8 images -->
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400&auto=format&fit=crop" data-title="Comedor, luz vespertina">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1734437070337-e97005393fb9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Comedor con iluminación cálida" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop" data-title="Mostrador de mármol y espresso">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1734437069907-bd6649ef017b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mostrador de mármol con cafetera espresso" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1533777419517-3e4017e2e15b?q=80&w=1400&auto=format&fit=crop" data-title="Vista de la cocina abierta">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1734437070235-dabb4c89d5dc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cocina abierta con horno de leña" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1521017432531-fbd92d1cf66d?q=80&w=1400&auto=format&fit=crop" data-title="Montaje de mesa">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1734437070039-a1b6228c1bdc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Montaje de mesa minimalista con lino" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1498654200943-1088dd4438ae?q=80&w=1400&auto=format&fit=crop" data-title="Barra con selección de vinos">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1730840529770-a14e6e926d7f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Barra con botellas de vino" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1400&auto=format&fit=crop" data-title="Chef en el horno">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1730840529774-1f13ab819665?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Chef usando pala frente al horno de leña" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1400&auto=format&fit=crop" data-title="Acogedor booth en la esquina">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1730840529770-a14e6e926d7f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Booth acogedor en la esquina" loading="lazy" decoding="async"></div>
+            </a>
+          </div>
+          <div class="col">
+            <a href="#" class="d-block" data-bs-toggle="modal" data-bs-target="#lightbox" data-img="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1400&auto=format&fit=crop" data-title="Fachada de entrada">
+              <div class="ratio ratio-4x3"><img src="https://plus.unsplash.com/premium_photo-1730840529996-4d43737d0cdf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fachada exterior del restaurante" loading="lazy" decoding="async"></div>
+            </a>
           </div>
         </div>
-        <!-- Card 3 -->
-        <div class="col-sm-6 col-lg-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Pizza Cuatro Quesos">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Cuatro Quesos</h5>
-              <p class="card-text text-muted">Mozzarella, gorgonzola, pecorino, parmesano.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$195</span>
-                <a href="#contacto" class="btn btn-sm btn-brand"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="col-sm-6 col-lg-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Pizza Hawaiana">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Hawaiana</h5>
-              <p class="card-text text-muted">Jamón ahumado, piña caramelizada, mozzarella.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$185</span>
-                <a href="#contacto" class="btn btn-sm btn-brand"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Card 5 -->
-        <div class="col-sm-6 col-lg-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1613564834361-9436948817d2?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Pizza Vegetariana">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Vegetariana</h5>
-              <p class="card-text text-muted">Pimientos asados, champiñones, cebolla morada, aceitunas.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$175</span>
-                <a href="#contacto" class="btn btn-sm btn-brand"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Card 6 -->
-        <div class="col-sm-6 col-lg-4">
-          <div class="card h-100">
-            <img src="https://images.unsplash.com/photo-1541745537413-b804debbf380?q=80&w=1200&auto=format&fit=crop" class="card-img-top" alt="Pizza Diavola">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">Diávola</h5>
-              <p class="card-text text-muted">Salame picante, chile rojo, aceite de ajo.</p>
-              <div class="mt-auto d-flex justify-content-between align-items-center">
-                <span class="fw-bold">$199</span>
-                <a href="#contacto" class="btn btn-sm btn-brand"><i class="bi bi-cart-plus me-1"></i>Agregar</a>
+      </div>
+
+      <!-- Lightbox Modal -->
+      <div class="modal fade" id="lightbox" tabindex="-1" aria-hidden="true" aria-labelledby="lightboxLabel">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content border-0 bg-transparent">
+            <button type="button" class="btn-close ms-auto me-n2 mt-n2 bg-white rounded-circle p-2" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <div class="card border-0 shadow-lg">
+              <img id="lightboxImg" src="" alt="" class="w-100" loading="eager">
+              <div class="card-body">
+                <h5 id="lightboxLabel" class="mb-0">Galería</h5>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Aviso -->
-      <div class="alert alert-light border mt-4" role="alert">
-        <div class="d-flex align-items-center gap-2">
-          <i class="bi bi-info-circle"></i>
-          <small class="text-muted">Los ingredientes pueden variar según temporada. Pregunta por opciones veganas y sin gluten.</small>
+    <!-- Location -->
+    <section id="location" aria-labelledby="location-heading" class="bg-white">
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="eyebrow text-muted">Cómo encontrarnos</span>
+          <h2 id="location-heading" class="fw-bold">En el corazón de Nápoles</h2>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Nosotros -->
-  <section id="nosotros" class="py-5 bg-soft">
-    <div class="container">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-6">
-          <h2 class="section-title">Sobre Nosotros</h2>
-          <div class="divider mb-3"></div>
-          <p class="lead">Nacimos con la idea de compartir el verdadero espíritu de la pizza napolitana en un ambiente cálido y moderno.</p>
-          <p class="text-muted">Cada masa reposa 48 horas para lograr una fermentación natural que garantiza sabor y digestibilidad. Nuestro equipo cuida cada detalle: desde seleccionar proveedores locales hasta hornear cada pizza a la perfección.</p>
-          <div class="rating mb-3" aria-label="Calificación 5 de 5">
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <i class="bi bi-star-fill"></i>
-            <span class="ms-2 text-muted small">4.9/5 (1,200+ reseñas)</span>
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <div class="p-4 card-soft h-100">
+              <h5 class="fw-bold mb-3">Oro Rosso Pizzería</h5>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-1"><i class="bi bi-geo-alt me-2 text-danger"></i> Via Roma 21, Nápoles, Italia</li>
+                <li class="mb-1"><i class="bi bi-clock me-2 text-primary"></i> Lun–Dom 12:00–22:30</li>
+                <li class="mb-1"><i class="bi bi-telephone me-2 text-success"></i> <a href="tel:+390811234567" class="link-underline link-underline-opacity-0">+39 081 123 4567</a></li>
+                <li class="mb-1"><i class="bi bi-envelope me-2 text-secondary"></i> <a href="mailto:ciao@ororosso.example" class="link-underline link-underline-opacity-0">ciao@ororosso.example</a></li>
+              </ul>
+              <div class="d-flex gap-2">
+                <a class="btn btn-outline-dark rounded-pill" href="https://www.google.com/maps/dir/?api=1&destination=40.8518%2C14.2681" target="_blank" rel="noopener">Cómo llegar</a>
+                <a class="btn btn-accent rounded-pill" href="reservacion.html">Reservar mesa</a>
+              </div>
+            </div>
           </div>
-          <a href="#menu" class="btn btn-brand"><i class="bi bi-egg-fried me-2"></i>Ver especialidades</a>
-        </div>
-        <div class="col-lg-6">
-          <img class="img-fluid rounded-4 shadow" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1400&auto=format&fit=crop" alt="Horno de leña">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contacto" class="py-5">
-    <div class="container">
-      <h2 class="section-title">Contacto y Reservas</h2>
-      <div class="divider mb-4"></div>
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <form class="needs-validation" novalidate>
-            <div class="mb-3">
-              <label for="name" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="name" placeholder="Tu nombre" required>
-              <div class="invalid-feedback">Por favor, escribe tu nombre.</div>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" placeholder="nombre@correo.com" required>
-              <div class="invalid-feedback">Introduce un email válido.</div>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Mensaje</label>
-              <textarea id="message" rows="4" class="form-control" placeholder="Quiero reservar para 4 personas el viernes 8pm..." required></textarea>
-              <div class="invalid-feedback">Cuéntanos en qué podemos ayudarte.</div>
-            </div>
-            <button class="btn btn-brand" type="submit"><i class="bi bi-send me-2"></i>Enviar</button>
-          </form>
-
-          <div class="mt-4">
-            <p class="mb-1"><i class="bi bi-geo-alt me-2"></i><strong>Dirección:</strong> Av. del Sabor 123, Col. Centro</p>
-            <p class="mb-1"><i class="bi bi-telephone me-2"></i><strong>Tel:</strong> (55) 1234 5678</p>
-            <p class="mb-0"><i class="bi bi-clock me-2"></i><strong>Horario:</strong> Lun-Dom 12:00–23:00</p>
+          <div class="col-lg-7">
+            <iframe class="map-embed" aria-label="Mapa de Google con la ubicación de Oro Rosso" loading="lazy" decoding="async"
+              src="https://www.google.com/maps?q=40.8518,14.2681&z=15&output=embed">
+            </iframe>
           </div>
         </div>
-        <div class="col-lg-6">
-          <iframe class="map-embed" loading="lazy" allowfullscreen
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6024.938026699055!2d-73.988135!3d40.741895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzMwLjgiTiA3M8KwNTknMTcuMyJX!5e0!3m2!1ses!2smx!4v1689360000000"></iframe>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="pt-5 pb-4">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-md-6">
-          <h5 class="mb-2">La Pizza Nostra</h5>
-          <p class="text-muted">Auténtica pizza con masa madre y productos locales.</p>
-          <div class="social">
-            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <h6 class="text-uppercase">Secciones</h6>
-          <ul class="list-unstyled">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#menu">Menú</a></li>
-            <li><a href="#nosotros">Sobre Nosotros</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h6 class="text-uppercase">Contacto</h6>
-          <ul class="list-unstyled">
-            <li><a href="mailto:hola@lapizzanostra.mx"><i class="bi bi-envelope me-2"></i>hola@lapizzanostra.mx</a></li>
-            <li><a href="tel:+525512345678"><i class="bi bi-telephone me-2"></i>+52 55 1234 5678</a></li>
-          </ul>
-        </div>
-      </div>
-      <hr class="my-4 border-secondary">
-      <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center small">
-        <span>© <span id="year"></span> La Pizza Nostra. Todos los derechos reservados.</span>
-        <span>Hecho con <i class="bi bi-heart-fill" style="color:var(--brand-red)"></i> y mucho queso.</span>
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <small>© <span id="year"></span> Oro Rosso Pizzería</small>
+      <div class="d-flex gap-3 small">
+        <a class="link-secondary text-decoration-none" href="#home">Volver arriba</a>
+        <a class="link-secondary text-decoration-none" href="menu.html">Menú</a>
+        <a class="link-secondary text-decoration-none" href="#contact">Contacto</a>
+        <a class="link-secondary text-decoration-none" href="reservacion.html">Reservación</a>
       </div>
     </div>
   </footer>
 
-  <!-- Floating CTA -->
-  <div class="floating-cta d-none d-md-block">
-    <a href="#contacto" class="btn btn-brand btn-lg shadow-lg rounded-pill"><i class="bi bi-whatsapp me-2"></i>Pide por WhatsApp</a>
-  </div>
+  <!-- Back to top floating button -->
+  <button id="backToTop" class="btn btn-dark back-to-top" aria-label="Volver arriba">
+    <i class="bi bi-arrow-up"></i>
+  </button>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <!-- Custom JS -->
   <script>
-    // Navbar blur on scroll
-    const nav = document.getElementById('mainNav');
-    const onScroll = () => {
-      if (window.scrollY > 10) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-    };
-    document.addEventListener('scroll', onScroll);
-    onScroll();
-
-    // Bootstrap form validation
-    (() => {
-      'use strict'
-      const forms = document.querySelectorAll('.needs-validation')
-      Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!form.checkValidity()) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated')
-        }, false)
-      })
-    })()
-
-    // Current year in footer
+    // Año actual
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Desplazamiento suave para enlaces de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+          // Cerrar navbar en móvil
+          const nav = document.getElementById('nav');
+          if (nav.classList.contains('show')) new bootstrap.Collapse(nav).hide();
+        }
+      });
+    });
+
+    // Resaltado de sección activa
+    const sections = Array.from(document.querySelectorAll('main section, header.hero')).map(el => ({id: el.id || 'home', el}));
+    const navLinks = document.querySelectorAll('.navbar .nav-link');
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = entry.target.id || 'home';
+          navLinks.forEach(l=>{
+            l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+            l.setAttribute('aria-current', l.classList.contains('active') ? 'page' : '');
+          });
+        }
+      });
+    }, { root: null, threshold: 0.55 });
+    sections.forEach(s=>observer.observe(s.el));
+
+    // Configuración del carrusel de promociones con compatibilidad PRM
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const carouselEl = document.getElementById('promoCarousel');
+    const carousel = new bootstrap.Carousel(carouselEl, {
+      interval: 6000,
+      pause: 'hover',
+      ride: prefersReducedMotion.matches ? false : 'carousel',
+      touch: true,
+      wrap: true
+    });
+    if (prefersReducedMotion.matches) carousel.pause();
+    prefersReducedMotion.addEventListener?.('change', e=>{
+      if(e.matches) carousel.pause(); else carousel.cycle();
+    });
+
+    // Modal de galería (contenido dinámico)
+    const lightbox = document.getElementById('lightbox');
+    lightbox.addEventListener('show.bs.modal', event=>{
+      const trigger = event.relatedTarget;
+      const img = trigger?.getAttribute('data-img');
+      const title = trigger?.getAttribute('data-title') || 'Galería';
+      const imgEl = document.getElementById('lightboxImg');
+      const labelEl = document.getElementById('lightboxLabel');
+      imgEl.src = img;
+      imgEl.alt = title;
+      labelEl.textContent = title;
+    });
+
+    // Validación de formularios de contacto/reservación + toast en lugar de envío
+    (()=>{
+      const toastEl = document.getElementById('formToast');
+      const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
+      document.querySelectorAll('form.needs-validation').forEach(form=>{
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          if(!form.checkValidity()){
+            e.stopPropagation();
+            form.classList.add('was-validated');
+            return;
+          }
+          toast.show();
+          form.reset();
+          form.classList.remove('was-validated');
+        });
+      });
+    })();
+
+    // Reservación: fecha mínima hoy, sugerir horario de apertura
+    (()=>{
+      const d = document.getElementById('r-date');
+      if (d){
+        const today = new Date(); today.setHours(0,0,0,0);
+        const iso = today.toISOString().split('T')[0];
+        d.min = iso;
+      }
+      const t = document.getElementById('r-time');
+      if (t){
+        t.min = "12:00"; t.max = "22:00"; t.step = 900; // intervalos de 15 minutos
+      }
+    })();
+
+    // Botón "volver arriba": visibilidad + acción
+    const backBtn = document.getElementById('backToTop');
+    const toggleBackBtn = () => {
+      if (window.scrollY > 600) backBtn.classList.add('show'); else backBtn.classList.remove('show');
+    };
+    window.addEventListener('scroll', toggleBackBtn, { passive: true });
+    backBtn.addEventListener('click', ()=> window.scrollTo({top:0, behavior: prefersReducedMotion.matches ? 'auto':'smooth'}));
+
+    // Filtros del menú (pill de selección única por pestaña activa)
+    (()=>{
+      const pills = document.querySelectorAll('.filter-pill');
+      const applyFilter = (filter) => {
+        // Determinar pestaña activa
+        const activePane = document.querySelector('.tab-pane.active.show') || document.querySelector('.tab-pane.active');
+        if(!activePane) return;
+        const items = activePane.querySelectorAll('.menu-item');
+        items.forEach(card=>{
+          const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+          if(filter === 'all' || tags.includes(filter)) {
+            card.classList.remove('d-none');
+          } else {
+            card.classList.add('d-none');
+          }
+        });
+      };
+      pills.forEach(p=>{
+        p.addEventListener('click', ()=>{
+          pills.forEach(x=>x.classList.replace('text-bg-dark','text-bg-secondary'));
+          p.classList.replace('text-bg-secondary','text-bg-dark');
+          applyFilter(p.dataset.filter);
+        });
+        p.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); p.click(); }});
+      });
+      // Reaplicar filtro al cambiar de pestaña
+      document.getElementById('menuTabs')?.addEventListener('shown.bs.tab', ()=>{
+        const active = document.querySelector('.filter-pill.text-bg-dark');
+        applyFilter(active?.dataset.filter || 'all');
+      });
+      // Inicial
+      applyFilter('all');
+    })();
   </script>
 </body>
 </html>

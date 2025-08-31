@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oro Rosso — Reservación</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    :root{
+      /* PALETA CÁLIDA */
+      --bg:#fdf6f0;        /* beige cálido (fondo principal) */
+      --bg-alt:#fff0e6;    /* melocotón suave (alterno) */
+      --text:#2C3E50;      /* gris oscuro legible */
+      --accent:#C0392B;    /* terracota/rojo acento */
+      --deep:#8e2b1c;      /* terracota oscuro (bordes/iconos/footer) */
+      --muted:#e5d7d0;     /* gris cálido para líneas suaves */
+    }
+
+    body{
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    h1,h2,h3,.navbar-brand{font-family:"Playfair Display",Georgia,serif;letter-spacing:.2px}
+
+    /* Navbar cálida y translúcida (idéntica a index/menu) */
+    .navbar{
+      backdrop-filter:blur(8px);
+      background:rgba(253,246,240,.9)!important;
+      border-bottom:1px solid rgba(0,0,0,.06)
+    }
+    /* Soporta tanto .mono (original) como .monogram (del index) */
+    .navbar-brand .mono,
+    .navbar-brand .monogram{
+      display:inline-grid;place-items:center;width:32px;height:32px;
+      border:1.5px solid var(--deep);border-radius:50%;margin-right:.5rem;
+      font-weight:700;color:var(--deep)
+    }
+
+    .btn-accent{
+      --bs-btn-color:#fff;
+      --bs-btn-bg:var(--accent);
+      --bs-btn-border-color:var(--accent);
+      --bs-btn-hover-bg:#a83222;
+      --bs-btn-hover-border-color:#a83222
+    }
+
+    header.hero{
+      position:relative;min-height:54vh;display:flex;align-items:center;color:#fff;
+      background:url('https://images.unsplash.com/photo-1533777419517-3e4017e2e15b?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    }
+    header.hero::before{
+      content:"";position:absolute;inset:0;
+      /* leve tinte cálido en el overlay */
+      background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.35));
+    }
+    header .content{position:relative;z-index:1}
+
+    section{padding:3.25rem 0}
+    @media(min-width:992px){section{padding:4.25rem 0}}
+
+    .card-soft{
+      background:#fff;border:1px solid rgba(0,0,0,.06);
+      border-radius:1rem;box-shadow:0 6px 20px rgba(0,0,0,.04)
+    }
+    .map-embed{width:100%;min-height:320px;border:0;border-radius:1rem}
+
+    /* Footer cálido */
+    footer{border-top:none;background:var(--deep);color:#fff}
+    footer a{color:#fdf6f0!important}
+
+    :focus-visible{outline:3px solid rgba(44,62,80,.35);outline-offset:3px;border-radius:.5rem}
+  </style>
+
+  <!-- Schema.org (reservation intent) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FoodEstablishment",
+    "name":"Oro Rosso Pizzeria",
+    "servesCuisine":"Pizza",
+    "address":{"@type":"PostalAddress","streetAddress":"Via Roma 21","addressLocality":"Naples","addressCountry":"IT"},
+    "telephone":"+39 081 123 4567",
+    "url":"https://ororosso.example",
+    "potentialAction":{
+      "@type":"ReserveAction",
+      "target":"https://ororosso.example/reservacion.html",
+      "result":{"@type":"FoodEstablishmentReservation"}
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navbar (idéntico al de index.html) -->
+  <nav class="navbar navbar-expand-lg sticky-top" aria-label="Principal">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html#home">
+        <span class="monogram" aria-hidden="true">O</span><span>Oro Rosso Pizzería</span>
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Alternar navegación">
+        <span class="navbar-toggler-icon"><i class="bi bi-list fs-1"></i></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html#home">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#history">Historia</a></li>
+          <li class="nav-item"><a class="nav-link" href="menu.html">Menú</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#promos">Promociones</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#reviews">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#gallery">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#location">Ubicación</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="reservacion.html">Reservación</a></li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-sm btn-accent rounded-pill px-3" href="reservacion.html" role="button" aria-label="Reservar mesa">Reservar mesa</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container content text-center">
+      <span class="text-uppercase small opacity-75">Reservas • 12:00–22:30</span>
+      <h1 class="display-5 fw-bold mt-2">Reserva tu mesa</h1>
+      <p class="lead mx-auto" style="max-width:720px">Confirma tu visita con nuestro formulario rápido. Te enviaremos la confirmación por email.</p>
+      <div class="d-flex gap-2 justify-content-center mt-3">
+        <a href="tel:+390811234567" class="btn btn-light rounded-pill"><i class="bi bi-telephone me-1"></i> +39 081 123 4567</a>
+        <a href="https://wa.me/390811234567?text=Hola%20Oro%20Rosso!%20Quiero%20reservar..." target="_blank" class="btn btn-outline-light rounded-pill"><i class="bi bi-whatsapp me-1"></i> WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Reservation -->
+    <section>
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <!-- Form -->
+          <div class="col-lg-7">
+            <div class="card-soft p-4 h-100">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi bi-calendar2-check fs-4 text-danger"></i>
+                <h2 class="h4 fw-bold mb-0">Detalles de la reservación</h2>
+              </div>
+              <p class="text-muted small mb-4">*Campos obligatorios. Horario: 12:00–22:30 (última llegada 22:30).</p>
+
+              <form id="bookingForm" class="needs-validation" novalidate>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">Nombre completo *</label>
+                    <input type="text" id="name" class="form-control" placeholder="Tu nombre" required>
+                    <div class="invalid-feedback">Ingresa tu nombre.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" id="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+                    <div class="invalid-feedback">Correo válido requerido.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input type="tel" id="phone" class="form-control" placeholder="+39 ...">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="guests" class="form-label">Personas *</label>
+                    <select id="guests" class="form-select" required>
+                      <option value="" disabled selected>Selecciona...</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option>
+                      <option>5</option><option>6</option><option>7</option><option>8</option>
+                      <option>9</option><option>10</option><option>11</option><option>12</option>
+                    </select>
+                    <div class="invalid-feedback">Indica cuántas personas.</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="date" class="form-label">Fecha *</label>
+                    <input type="date" id="date" class="form-control" required>
+                    <div class="invalid-feedback">Elige una fecha.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="time" class="form-label">Hora *</label>
+                    <input type="time" id="time" class="form-control" required>
+                    <div class="invalid-feedback">Elige una hora (12:00–22:30).</div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="seating" class="form-label">Preferencia de mesa</label>
+                    <select id="seating" class="form-select">
+                      <option value="" selected>Sin preferencia</option>
+                      <option>Interior</option>
+                      <option>Exterior</option>
+                      <option>Cerca de ventana</option>
+                      <option>Alta silla / Niños</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="occasion" class="form-label">Ocasión</label>
+                    <select id="occasion" class="form-select">
+                      <option value="" selected>Ninguna</option>
+                      <option>Cumpleaños</option>
+                      <option>Aniversario</option>
+                      <option>Negocios</option>
+                      <option>Otra</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="notes" class="form-label">Notas (alergias, celebración, etc.)</label>
+                    <textarea id="notes" class="form-control" rows="3" placeholder="Cuéntanos si necesitas algo especial."></textarea>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="terms" required>
+                      <label class="form-check-label" for="terms">Acepto ser contactado para confirmar la reservación.</label>
+                      <div class="invalid-feedback">Necesitamos tu autorización para contactarte.</div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 d-flex flex-wrap gap-2">
+                    <button class="btn btn-accent rounded-pill px-4" type="submit"><i class="bi bi-check2-circle me-1"></i>Solicitar reservación</button>
+                    <button class="btn btn-outline-dark rounded-pill" id="checkAvail" type="button"><i class="bi bi-search-heart me-1"></i>Comprobar disponibilidad</button>
+                  </div>
+
+                  <div id="availMsg" class="col-12 d-none">
+                    <div class="alert alert-light border rounded-4 mb-0"><strong>Disponibilidad demo:</strong> <span id="availText">—</span></div>
+                  </div>
+
+                  <p class="small text-muted mt-2 mb-0">* Demo — no se envían emails automáticamente. Te mostraremos una confirmación y podrás descargar un evento de calendario.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Info + Mapa -->
+          <div class="col-lg-5">
+            <div class="card-soft p-4 h-100">
+              <h2 class="h5 fw-bold mb-3">Horario & contacto</h2>
+              <ul class="list-unstyled mb-4">
+                <li class="mb-1"><i class="bi bi-clock me-2 text-primary"></i> Lun–Dom <strong>12:00–22:30</strong></li>
+                <li class="mb-1"><i class="bi bi-telephone me-2 text-success"></i> <a href="tel:+390811234567" class="link-underline link-underline-opacity-0">+39 081 123 4567</a></li>
+                <li class="mb-1"><i class="bi bi-envelope me-2 text-secondary"></i> <a href="mailto:ciao@ororosso.example" class="link-underline link-underline-opacity-0">ciao@ororosso.example</a></li>
+                <li class="mb-1"><i class="bi bi-geo-alt me-2 text-danger"></i> Via Roma 21, Naples, Italy</li>
+              </ul>
+              <div class="ratio ratio-4x3 mb-3">
+                <iframe class="map-embed" aria-label="Mapa de Oro Rosso" loading="lazy" decoding="async"
+                        src="https://www.google.com/maps?q=40.8518,14.2681&z=15&output=embed"></iframe>
+              </div>
+              <div class="d-flex gap-2">
+                <a class="btn btn-outline-dark rounded-pill" href="https://www.google.com/maps/dir/?api=1&destination=40.8518%2C14.2681" target="_blank" rel="noopener"><i class="bi bi-map me-1"></i> Cómo llegar</a>
+                <a class="btn btn-dark rounded-pill" href="menu.html"><i class="bi bi-card-text me-1"></i> Ver menú</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ mini -->
+        <div class="row mt-4">
+          <div class="col-lg-8">
+            <div class="card-soft p-4">
+              <h3 class="h5 fw-bold mb-3">Preguntas frecuentes</h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <strong>¿Tiempo de tolerancia?</strong>
+                  <p class="mb-0 small text-muted">Guardamos la mesa <strong>15 minutos</strong> después de la hora reservada.</p>
+                </div>
+                <div class="col-md-6">
+                  <strong>¿Alergias?</strong>
+                  <p class="mb-0 small text-muted">Indícalas en notas; tenemos opciones <em>veggie, veganas</em> y <em>sin gluten</em>.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Confirmation Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="bi bi-patch-check-fill text-success me-2"></i> Solicitud enviada</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-2">Gracias <strong id="c_name">—</strong>. Guardamos tu solicitud para:</p>
+          <ul class="mb-2">
+            <li><strong>Fecha:</strong> <span id="c_date">—</span></li>
+            <li><strong>Hora:</strong> <span id="c_time">—</span></li>
+            <li><strong>Personas:</strong> <span id="c_guests">—</span></li>
+          </ul>
+          <p class="small text-muted mb-0">Esto es una demo: te mostraremos opciones para guardar en tu calendario o continuar por WhatsApp.</p>
+        </div>
+        <div class="modal-footer">
+          <a id="icsLink" class="btn btn-outline-dark rounded-pill" download="OroRosso-Reserva.ics"><i class="bi bi-calendar2-plus me-1"></i> Añadir al calendario</a>
+          <a id="waLink" class="btn btn-success rounded-pill" target="_blank"><i class="bi bi-whatsapp me-1"></i> Confirmar por WhatsApp</a>
+          <button type="button" class="btn btn-accent rounded-pill" data-bs-dismiss="modal">Listo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <small>© <span id="year"></span> Oro Rosso Pizzeria</small>
+      <div class="d-flex gap-3 small">
+        <a class="link-secondary text-decoration-none" href="index.html#home">Inicio</a>
+        <a class="link-secondary text-decoration-none" href="menu.html">Menú</a>
+        <a class="link-secondary text-decoration-none" href="#top">Arriba</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Año actual
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Preferencias de movimiento
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // Cerrar navbar en móvil al navegar (enlaces dentro del navbar)
+    document.querySelectorAll('.navbar .nav-link, .navbar .btn').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        const nav = document.getElementById('nav');
+        if (nav.classList.contains('show')) new bootstrap.Collapse(nav).hide();
+      });
+    });
+
+    // Fechas y horas (mínimo hoy, horario 12:00–22:30, step 15 m)
+    (()=>{
+      const dateEl = document.getElementById('date');
+      const timeEl = document.getElementById('time');
+      const today = new Date(); today.setHours(0,0,0,0);
+      dateEl.min = today.toISOString().split('T')[0];
+      timeEl.min = "12:00"; timeEl.max="22:30"; timeEl.step = 900;
+    })();
+
+    // Helper: formatea fecha y hora legible
+    function fmtDateISOToHuman(iso){
+      const [y,m,d] = iso.split('-').map(n=>parseInt(n,10));
+      const dt = new Date(y, m-1, d);
+      return dt.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    }
+
+    // Demo: comprobación de disponibilidad
+    document.getElementById('checkAvail').addEventListener('click', ()=>{
+      const d = document.getElementById('date').value;
+      const t = document.getElementById('time').value;
+      const g = document.getElementById('guests').value;
+      const box = document.getElementById('availMsg');
+      const txt = document.getElementById('availText');
+
+      if(!d || !t || !g){
+        txt.textContent = 'Por favor selecciona fecha, hora y personas.';
+        box.classList.remove('d-none');
+        return;
+      }
+
+      // lógica demo simple: horas pares = alta demanda
+      const hh = parseInt(t.split(':')[0],10);
+      const busy = (hh % 2 === 0);
+      txt.innerHTML = busy
+        ? 'Alta demanda en ese horario. Te sugerimos <strong>'+t+'</strong> o <strong>'+padTime(hh-1)+':'+t.split(':')[1]+'</strong>.'
+        : '¡Hay mesas disponibles para esa hora!';
+      box.classList.remove('d-none');
+    });
+
+    function padTime(h){ return String(Math.max(12, Math.min(22, h))).padStart(2,'0'); }
+
+    // Validación de formulario + Modal de confirmación + ICS
+    (()=>{
+      const form = document.getElementById('bookingForm');
+      const modal = new bootstrap.Modal(document.getElementById('confirmModal'), { backdrop: 'static' });
+
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        if(!form.checkValidity()){
+          e.stopPropagation();
+          form.classList.add('was-validated');
+          return;
+        }
+
+        // Lee valores
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const guests = document.getElementById('guests').value;
+        const seating = document.getElementById('seating').value;
+        const occasion = document.getElementById('occasion').value;
+        const notes = document.getElementById('notes').value.trim();
+
+        // Rellena modal
+        document.getElementById('c_name').textContent = name;
+        document.getElementById('c_date').textContent = fmtDateISOToHuman(date);
+        document.getElementById('c_time').textContent = time;
+        document.getElementById('c_guests').textContent = guests;
+
+        // Prepara ICS (2 horas de duración por defecto)
+        const dtStart = new Date(date + 'T' + time);
+        const dtEnd = new Date(dtStart.getTime() + 2*60*60*1000);
+        const ics = buildICS({
+          start: dtStart,
+          end: dtEnd,
+          title: 'Reservación — Oro Rosso Pizzeria',
+          description:
+            'Reserva a nombre de: ' + name + '\n' +
+            'Personas: ' + guests + '\n' +
+            (seating ? 'Mesa: ' + seating + '\n' : '') +
+            (occasion ? 'Ocasión: ' + occasion + '\n' : '') +
+            (notes ? 'Notas: ' + notes + '\n' : '') +
+            (phone ? 'Tel: ' + phone + '\n' : '') +
+            'Email: ' + email,
+          location: 'Via Roma 21, Naples, Italy'
+        });
+        const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        const icsLink = document.getElementById('icsLink');
+        icsLink.href = url;
+
+        // WhatsApp prefill
+        const waMsg =
+          `Hola Oro Rosso! Confirmo mi reservación:%0A`+
+          `Nombre: ${encodeURIComponent(name)}%0A`+
+          `Fecha: ${encodeURIComponent(fmtDateISOToHuman(date))}%0A`+
+          `Hora: ${encodeURIComponent(time)}%0A`+
+          `Personas: ${encodeURIComponent(guests)}%0A`+
+          (seating?`Mesa: ${encodeURIComponent(seating)}%0A`:``)+
+          (occasion?`Ocasión: ${encodeURIComponent(occasion)}%0A`:``)+
+          (notes?`Notas: ${encodeURIComponent(notes)}%0A`:``)+
+          (phone?`Tel: ${encodeURIComponent(phone)}%0A`:``)+
+          `Email: ${encodeURIComponent(email)}`;
+        document.getElementById('waLink').href = 'https://wa.me/390811234567?text=' + waMsg;
+
+        // Muestra modal
+        modal.show();
+
+        // Resetea formulario (demo)
+        form.reset();
+        form.classList.remove('was-validated');
+        document.getElementById('availMsg').classList.add('d-none');
+      });
+    })();
+
+    function toICSDate(d){
+      const pad = n => String(n).padStart(2,'0');
+      const y = d.getUTCFullYear();
+      const m = pad(d.getUTCMonth()+1);
+      const day = pad(d.getUTCDate());
+      const hh = pad(d.getUTCHours());
+      const mm = pad(d.getUTCMinutes());
+      const ss = pad(d.getUTCSeconds());
+      return `${y}${m}${day}T${hh}${mm}${ss}Z`;
+    }
+
+    function buildICS({start,end,title,description,location}){
+      const uid = 'ororosso-' + start.getTime() + '@example';
+      return [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Oro Rosso//Reservations//ES',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:' + uid,
+        'DTSTAMP:' + toICSDate(new Date()),
+        'DTSTART:' + toICSDate(start),
+        'DTEND:' + toICSDate(end),
+        'SUMMARY:' + title,
+        'DESCRIPTION:' + description.replace(/\n/g,'\\n'),
+        'LOCATION:' + location,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+    }
+
+    // Accesibilidad: Enter/Espacio en botones si fuera necesario
+    document.querySelectorAll('button, .btn').forEach(btn=>{
+      btn.addEventListener('keydown', e=>{
+        if((e.key==='Enter'||e.key===' ') && !btn.disabled){ e.preventDefault(); btn.click(); }
+      });
+    });
+
+    // Cerrar navbar en mobile al navegar a anclas locales
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',()=>{
+        const nav = document.getElementById('nav');
+        if (nav.classList.contains('show')) new bootstrap.Collapse(nav).hide();
+      });
+    });
+  </script>
+</body>
+</html>
