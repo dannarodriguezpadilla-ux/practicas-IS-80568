@@ -1,0 +1,98 @@
+/* ===== Paleta de colores =====
+Fuerte: #6B9080
+Medio:  #A4C3B2
+Claro:  #CCE3DE
+Suave:  #EAF4F4
+Base:   #F6FFF8
+*/
+
+/* Fondo base */
+body {
+  background-color: #F6FFF8;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== Navbar ===== */
+.custom-navbar {
+  background-color: #6B9080; /* Verde fuerte */
+}
+
+.custom-navbar .navbar-brand {
+  color: #F6FFF8; /* Contraste claro */
+}
+
+.custom-navbar .nav-link {
+  color: #EAF4F4;
+  transition: 0.3s;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #A4C3B2;
+}
+
+/* ===== Botón principal ===== */
+.btn-custom {
+  background-color: #A4C3B2;
+  color: #fff;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-custom:hover {
+  background-color: #6B9080;
+  color: #fff;
+}
+
+/* ===== Carrusel ===== */
+#carouselExampleCaptions {
+  max-width: 900px;
+  margin-inline: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+#carouselExampleCaptions .carousel-item img {
+  object-fit: cover;
+}
+
+/* ===== Footer ===== */
+.custom-footer {
+  background-color: #6B9080;
+  color: #F6FFF8;
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 0px);
+}
+
+.footer-copy {
+  font-size: 0.95rem;
+}
+
+.footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  margin-left: .25rem;
+  border-radius: 50%;
+  color: #F6FFF8;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.footer-social a:hover {
+  background-color: #A4C3B2;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ===== Secciones alternas (si luego agregas más bloques) ===== */
+.section-alt {
+  background-color: #CCE3DE;
+  padding: 3rem 0;
+}
+
+.section-light {
+  background-color: #EAF4F4;
+  padding: 3rem 0;
+}
