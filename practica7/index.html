@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 7</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img id="imagen" src="https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21" class="img-fluid" alt="PlayStation 5">
+                <h1 id="nombre">Nombre del producto</h1>
+                <p id="descripcion">Descripción</p>    
+                <p>Precio: <span class="text-danger" id="precio">Precio</span></p>            
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        let nombre = 'PlayStation 6';
+        let descripcion = 'La PlayStation 6 es la consola de videojuegos de próxima generación';
+        let imagen = 'https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep21';
+        let precio = 12500;
+       
+        console.log('Nombre: ' + nombre);
+       
+        let nombreElemento = document.getElementById('nombre');
+        nombreElemento.textContent = nombre;
+        let descripcionElemento = document.getElementById('descripcion');
+        descripcionElemento.textContent = descripcion;
+        let imagenElemento = document.querySelector('img');
+        imagenElemento.src = imagen;
+        let precioElemento = document.getElementById('precio');
+        precioElemento.textContent = '$' + precio.toFixed(2) + ' MXN';
+ 
+    </script>
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
