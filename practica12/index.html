@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Música — Playlist</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/estilos.css"/>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-md am-nav border-bottom sticky-top">
+    <div class="container-xl">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#">
+        <span class="am-dot"></span> Mi Música
+      </a>
+      <div class="d-flex gap-2 ms-auto align-items-center">
+        <span class="text-secondary d-none d-sm-inline small">Tema</span>
+        <button id="modeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-label="Cambiar tema">
+          <i id="iconTheme" class="bi bi-moon-stars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <main class="container-xl am-wrapper">
+    <section class="am-hero card shadow-sm">
+      <div class="am-hero-art">
+        <img id="heroCover" src="img/1.jpeg" alt="Carátula playlist" />
+      </div>
+      <div class="am-hero-meta">
+        <h1 class="display-6 fw-bold mb-1">Mis canciones favoritas</h1>
+        <p class="publicado">Publicado por Danna</p>
+        <p class="text-secondary mb-2">
+          Playlist • <span id="songCount">0</span> canciones • <span id="totalTime">0:00</span>
+        </p>
+        <div class="d-flex gap-2 flex-wrap">
+          <button id="btnPlayAll" class="btn btn-apple">
+            <i class="bi bi-play-fill me-1"></i> Reproducir
+          </button>
+          <button id="btnShuffle" class="btn btn-outline-apple">
+            <i class="bi bi-shuffle me-1"></i> Aleatorio
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section class="am-hero-tools">
+      <div class="input-group input-group-sm searchbar">
+        <span class="input-group-text"><i class="bi bi-search"></i></span>
+        <input id="searchInput" type="search" class="form-control" placeholder="Buscar canción, artista o álbum…">
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <label class="text-secondary small">Ordenar:</label>
+        <select id="sortSelect" class="form-select form-select-sm">
+          <option value="title">Título (A–Z)</option>
+          <option value="-title">Título (Z–A)</option>
+          <option value="artist">Artista (A–Z)</option>
+          <option value="-artist">Artista (Z–A)</option>
+          <option value="album">Álbum (A–Z)</option>
+          <option value="-album">Álbum (Z–A)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- LISTA -->
+    <section class="am-table card shadow-sm">
+      <div class="am-thead">
+        <div class="col-title">Canción</div>
+        <div class="col-artist">Artista</div>
+        <div class="col-album">Álbum</div>
+        <div class="col-time">Duración</div>
+        <div class="col-actions text-end">Acciones</div>
+      </div>
+      <div id="listaCanciones" class="am-tbody"></div>
+    </section>
+  </main>
+
+  <!-- TOAST -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+    <div id="appToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMsg">Hecho.</div>
+        <button type="button" class="btn-link btn-sm text-white me-2" id="toastUndo" style="display:none">Deshacer</button>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script defer src="js/index.js"></script>
+</body>
+</html>
